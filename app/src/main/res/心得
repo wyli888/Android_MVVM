@@ -1,0 +1,19 @@
+1、android:animateLayoutChanges="true"  启动了android自带的布局动画
+
+2、google 字体库 https://github.com/google/fonts
+
+3、在android控件中有一个属性叫做android:contentDescription
+一般来说，用户很少使用这个属性。
+但是对于一些视力有障碍的用户，android提供给用户一个很有用的功能，可以帮助使用app。
+这个属性必须在用户的Accessible 中的相应属性开启后才能使用。
+1. 首先下载google的应用 TalkBack (an accessibility service published by Google) 并且将功能打开 Settings > Accessibility > TalkBack 设置为On。
+2.在应用中添加这个属性。
+<Button
+    android:id=”@+id/pause_button”
+    android:src=”@drawable/pause”
+    android:contentDescription=”@string/pause”/>
+3.由于这个控件没有text属性，对于一些用户来说，无法理解这个控件是做什么的。
+这时用户点击这个控件。android系统会自动使用人声朗读控件上android:contentDescription属性说指向的内容。
+这样用户就可以知道这个控件是做什么用的。
+这个属性的主要功能就是为视力有障碍的人增加对控件的解释。
+

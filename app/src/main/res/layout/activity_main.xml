@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <data>
+    <variable
+      name="popularViewModel"
+      type="com.e.mvvm.viewmodels.MostPopularTVShowsViewModel" />
+    <import type="android.view.View"/>
+  </data>
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/colorPrimary"
+    tools:context=".activites.MainActivity">
+
+    <LinearLayout
+      android:id="@+id/layoutHeader"
+      android:layout_width="match_parent"
+      android:layout_height="?actionBarSize"
+      android:background="@color/colorPrimaryDark"
+      android:gravity="center_vertical"
+      android:orientation="horizontal"
+      app:layout_constraintTop_toTopOf="parent"
+      android:padding="@dimen/_8sdp"
+      >
+
+      <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:ellipsize="end"
+        android:fontFamily="@font/ubuntu_bold"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:text="@string/tv_shows_most_popular"
+        android:textSize="@dimen/_14ssp"
+        android:textColor="@color/colorTextIcons"/>
+
+
+      <ImageView
+        android:id="@+id/imageWatchList"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:padding="@dimen/_2sdp"
+        android:src="@drawable/ic_watchlist"
+        app:tint="@color/colorTextIcons"
+        android:contentDescription="@string/app_name" />
+
+      <ImageView
+        android:id="@+id/imageSearch"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:padding="@dimen/_2sdp"
+        android:src="@drawable/ic_search"
+        app:tint="@color/colorTextIcons"
+        android:contentDescription="@string/app_name" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/tvShowRecycle"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:clipToPadding="false"
+      android:orientation="vertical"
+      android:paddingTop="@dimen/_4sdp"
+      android:paddingStart="@dimen/_4sdp"
+      android:paddingEnd="@dimen/_4sdp"
+      android:paddingBottom="@dimen/_45sdp"
+      app:items="@{popularViewModel.items}"
+      app:itemBinding="@{popularViewModel.itemBinding}"
+      app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/layoutHeader"/>
+
+    <ProgressBar
+      android:layout_width="@dimen/_25sdp"
+      android:layout_height="@dimen/_25sdp"
+      android:layout_marginTop="@dimen/_25sdp"
+      android:visibility="@{popularViewModel.items.isEmpty() ? View.VISIBLE : View.GONE, default=gone}"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/layoutHeader"/>
+
+    <ProgressBar
+      android:layout_width="@dimen/_25sdp"
+      android:layout_height="@dimen/_25sdp"
+      android:layout_marginTop="@dimen/_25sdp"
+      android:visibility="@{popularViewModel.loadingMore ? View.VISIBLE : View.GONE, default=gone}"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"/>
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
