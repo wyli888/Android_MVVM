@@ -338,7 +338,7 @@
       app:layout_constraintBottom_toBottomOf="parent"
       android:background="@drawable/background_fab"
       android:padding="@dimen/_6sdp"
-      android:src="@drawable/ic_watchlist"
+      android:src="@{viewModel.isInWatchList ? @drawable/ic_added : @drawable/ic_watchlist }"
       app:tint="@color/colorTextIcons"
       app:layout_constraintEnd_toEndOf="parent"/>
 

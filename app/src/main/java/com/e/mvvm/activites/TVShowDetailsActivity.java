@@ -137,11 +137,11 @@ public class TVShowDetailsActivity extends AppCompatActivity {
     binding.imageWatchList.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-//            tvShowDetailsViewModel.addToWatchList(tvShow);
-//            runOnUiThread(()->{
-//              binding.imageWatchList.setImageResource(R.drawable.ic_added);
-//              Toast.makeText(TVShowDetailsActivity.this, "已添加", Toast.LENGTH_SHORT).show();
-//            });
+            tvShowDetailsViewModel.addToWatchList(tvShow);
+            runOnUiThread(()->{
+              //binding.imageWatchList.setImageResource(R.drawable.ic_added);
+              Toast.makeText(TVShowDetailsActivity.this, "已添加", Toast.LENGTH_SHORT).show();
+            });
 //            new CompositeDisposable().add(tvShowDetailsViewModel.addToWatchList(tvShow)
 //              .subscribeOn(Schedulers.io())
 //              .observeOn(AndroidSchedulers.mainThread())

@@ -73,4 +73,11 @@ dependencies {
 
     // recycleView binding
     implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:4.0.0'
+
+    // toast
+    implementation 'com.hjq:toast:8.8'
+
+    // 网络监听
+    implementation 'com.github.allenlzhang:NetworkState:v1.0.0'
+
 }

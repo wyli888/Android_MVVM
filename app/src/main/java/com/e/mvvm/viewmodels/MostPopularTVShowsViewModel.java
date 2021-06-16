@@ -1,27 +1,19 @@
 package com.e.mvvm.viewmodels;
 
 
-import android.app.Application;
-import android.content.Intent;
 import android.util.Log;
-
 import androidx.databinding.ObservableArrayList;
 import androidx.databinding.ObservableList;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-
 import com.e.mvvm.BR;
 import com.e.mvvm.R;
-import com.e.mvvm.action.Action;
 import com.e.mvvm.action.SingleLiveEvent;
-import com.e.mvvm.activites.TVShowDetailsActivity;
 import com.e.mvvm.listeners.TVShowListener;
 import com.e.mvvm.models.TVShow;
 import com.e.mvvm.network.ApiClient;
 import com.e.mvvm.network.ApiService;
 import com.e.mvvm.response.TVShowResponse;
-
+import com.hjq.toast.ToastUtils;
 import io.reactivex.annotations.NonNull;
 import me.tatarka.bindingcollectionadapter2.ItemBinding;
 import retrofit2.Call;
@@ -29,7 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MostPopularTVShowsViewModel extends ViewModel {
+public class MostPopularTVShowsViewModel extends BaseViewModel {
   //Stores actions for view.
   private SingleLiveEvent<TVShow> mAction = new SingleLiveEvent<>();
 
@@ -54,12 +46,6 @@ public class MostPopularTVShowsViewModel extends ViewModel {
   private int totalAvailablePages;
   public MutableLiveData<Boolean> loadingMore = new MutableLiveData<>();
   private MutableLiveData<TVShowResponse> responseMutableLiveData;
-
-//  public MostPopularTVShowsViewModel(@androidx.annotation.NonNull Application application) {
-//    super(application);
-//    this.application = application;
-//    responseMutableLiveData = new MutableLiveData<>();
-//  }
 
 
   public int getTotalAvailablePages() {
@@ -90,6 +76,7 @@ public class MostPopularTVShowsViewModel extends ViewModel {
         Log.i("=======onResponse======", "================");
         responseMutableLiveData.setValue(response.body());
         items.addAll(responseMutableLiveData.getValue().getTvShows());
+        Log.i("==================", items.size()+"");
         totalAvailablePages = responseMutableLiveData.getValue().getTotalPages();
         loadingMore.setValue(false);
       }
@@ -97,6 +84,7 @@ public class MostPopularTVShowsViewModel extends ViewModel {
       @Override
       public void onFailure(@NonNull Call<TVShowResponse> call, @NonNull Throwable t) {
         Log.i("=======onFailure======", "================");
+        ToastUtils.show("无网络");
         responseMutableLiveData.setValue(null);
       }
     });

@@ -11,7 +11,9 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-/*
+/*参考 谷歌大神写的一个类
+ https://github.com/android/architecture-samples/blob/dev-todo-mvvm-live/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/SingleLiveEvent.java
+
 * 一个事件指发送一次的动作。ViewModels 暴露了数据，但什么是事件呢？例如，导航事件或者展示 Snackbar 消息都是应该只执行一次的动作。
  事件的概念并不能很好的展示 LiveData 是如何存储和恢复数据的。来看一下下面的 ViewModel：
 

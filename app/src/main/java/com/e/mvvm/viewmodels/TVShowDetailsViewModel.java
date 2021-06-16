@@ -13,7 +13,10 @@ import com.e.mvvm.network.ApiService;
 import com.e.mvvm.response.TVShowDetailsResponse;
 import com.e.mvvm.respository.TVShowDetailsRepository;
 
+import java.util.List;
+
 import io.reactivex.Completable;
+import io.reactivex.Flowable;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -55,6 +58,7 @@ public class TVShowDetailsViewModel extends AndroidViewModel {
   private TVShowDetailsRepository tvShowDetailsRepository;
   private TVShowDatabase tvShowDatabase;
   public  MutableLiveData<TVShowDetailsResponse> data = new MutableLiveData<>();
+  public MutableLiveData<Boolean> isInWatchList = new MutableLiveData<>(false);
 
   public  TVShowDetailsViewModel(@NonNull Application application){
     super(application);
@@ -67,6 +71,7 @@ public class TVShowDetailsViewModel extends AndroidViewModel {
 //  }
 
   public Completable addToWatchList(TVShow tvShow){
+    isInWatchList.setValue(true);
     return tvShowDatabase.tvShowDao().insertToWatchList(tvShow);
   }
 
@@ -85,11 +90,5 @@ public class TVShowDetailsViewModel extends AndroidViewModel {
       }
     });
   }
-
-
-
-
-
-
 
 }

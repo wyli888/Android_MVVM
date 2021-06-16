@@ -1,6 +1,7 @@
 package com.e.mvvm.activites;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ObservableMap;
@@ -18,10 +19,12 @@ import android.view.View;
 import com.e.mvvm.R;
 import com.e.mvvm.action.Action;
 import com.e.mvvm.adapters.TVShowsAdapter;
+import com.e.mvvm.base.BaseActivity;
 import com.e.mvvm.databinding.ActivityMainBinding;
 import com.e.mvvm.listeners.TVShowListener;
 import com.e.mvvm.models.TVShow;
 import com.e.mvvm.viewmodels.MostPopularTVShowsViewModel;
+import com.hjq.toast.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.IllegalFormatCodePointException;
@@ -29,12 +32,12 @@ import java.util.List;
 
 import static com.e.mvvm.BR.tvShow;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
   private MostPopularTVShowsViewModel mostPopularTVShowsViewModel;
   private ActivityMainBinding binding;
 
-  @Override
+    @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
